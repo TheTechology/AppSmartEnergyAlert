@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartEnergy Alert – Created by Youth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SmartEnergy Alert – a web & app concept created by young people in EduHack Adjud 2025 to help citizens save energy by choosing the right time to use electricity." />
+
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #050816;
+      --card-bg: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --accent-2: #22c55e;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --danger: #f97373;
+      --danger-soft: rgba(248, 113, 113, 0.16);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --radius-xl: 26px;
+      --shadow-soft: 0 26px 70px rgba(15, 23, 42, 0.9);
+      --shadow-pill: 0 14px 40px rgba(56, 189, 248, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      background:
+        radial-gradient(circle at top, #1d283a 0, var(--bg-alt) 40%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 22px 10px 40px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* PHONE FRAME LAYOUT */
+
+    .phone-shell {
+      width: 100%;
+      max-width: 420px;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 40%, #000 100%);
+      border-radius: 38px;
+      padding: 16px 12px;
+      box-shadow:
+        0 0 0 1px rgba(148, 163, 184, 0.4),
+        0 28px 80px rgba(0, 0, 0, 0.95);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone-shell::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .phone-shell::after {
+      content: "";
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+      padding: 12px 10px 26px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(148, 163, 184, 0.6) transparent;
+    }
+
+    .page::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .page::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .page::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.6);
+      border-radius: 999px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 4px 14px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.96),
+        rgba(2, 6, 23, 0.8),
+        transparent
+      );
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #facc15, #22c55e 40%, #0ea5e9 100%);
+      position: relative;
+      box-shadow: var(--shadow-pill);
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: inherit;
+      border: 1px solid rgba(15, 23, 42, 0.7);
+      box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.8);
+    }
+
+    .logo-text-title {
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 6px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      color: var(--muted);
+      padding: 5px 8px;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s, transform 0.12s;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background: rgba(30, 64, 175, 0.7);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent), #4ade80);
+      color: #020617;
+      box-shadow: var(--shadow-pill);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.6);
+      opacity: 0.96;
+    }
+
+    .btn-pill span.icon {
+      font-size: 0.9rem;
+    }
+
+    main {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .lang-btn {
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 3px 7px;
+      font-size: 0.68rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+    }
+
+    .lang-btn span.flag {
+      font-size: 0.8rem;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--accent), #4ade80);
+      color: #020617;
+      border-color: transparent;
+      transform: translateY(-1px);
+    }
+
+    section {
+      border-radius: var(--radius-xl);
+      padding: 14px 14px 16px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(30, 64, 175, 0.9);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero {
+      border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.22), #020617 55%, #000 100%);
+      border: 1px solid rgba(59, 130, 246, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .hero h1 {
+      font-size: 1.3rem;
+      margin: 0 0 6px;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(120deg, var(--accent), #a855f7, #facc15);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.92);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .hero-tag strong {
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .btn-ghost {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      font-size: 0.72rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.12s;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(30, 64, 175, 0.7);
+      color: var(--text);
+      border-color: rgba(56, 189, 248, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .section-title {
+      font-size: 0.98rem;
+      margin: 0 0 4px;
+    }
+
+    .section-kicker {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .section-lead {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 4px 0 6px;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .person-card {
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 14px;
+      padding: 8px 8px 9px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 0.76rem;
+    }
+
+    .person-role {
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 2px;
+    }
+
+    .person-name {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .person-note {
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
+    .timeline {
+      margin-top: 6px;
+      border-left: 2px solid rgba(148, 163, 184, 0.6);
+      padding-left: 10px;
+    }
+
+    .timeline-item {
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 4px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -13px;
+      top: 3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+    }
+
+    .timeline-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .timeline-text {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .badge-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      font-size: 0.68rem;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+    }
+
+    .footer-note {
+      margin-top: 10px;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* DEMO CARD */
+
+    .demo-card {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.28), rgba(15, 23, 42, 0.98));
+      border-radius: 20px;
+      padding: 12px 12px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.76rem;
+    }
+
+    .demo-header-title {
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    .demo-header-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .demo-badge {
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: var(--accent-2);
+      font-size: 0.7rem;
+      border: 1px solid rgba(34, 197, 94, 0.45);
+    }
+
+    .demo-body {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 14px;
+      padding: 10px 10px 12px;
+      border: 1px solid rgba(30, 64, 175, 0.9);
+    }
+
+    .demo-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      margin-bottom: 8px;
+    }
+
+    .demo-label {
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .demo-value {
+      font-weight: 600;
+    }
+
+    .demo-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: rgba(15, 23, 42, 1);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      transition: border 0.15s, background 0.15s;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-2);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+      transition: box-shadow 0.15s, background 0.15s;
+    }
+
+    .demo-slider {
+      margin: 10px 0 8px;
+    }
+
+    .demo-slider label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22c55e, #eab308, #f97373);
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #e5e7eb;
+      border: 2px solid #0f172a;
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.5);
+      cursor: pointer;
+      transition: transform 0.12s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.05);
+    }
+
+    .demo-message {
+      margin-top: 6px;
+      padding: 7px 8px;
+      border-radius: 10px;
+      font-size: 0.74rem;
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .demo-message strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .demo-footnote {
+      margin-top: 6px;
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .floating-tag {
+      position: absolute;
+      bottom: 4px;
+      right: 7px;
+      font-size: 0.65rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+    }
+
+    /* PLANNER SECTION */
+
+    .planner-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr);
+      gap: 10px;
+    }
+
+    .planner-controls {
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 14px;
+      padding: 9px 9px 10px;
+      border: 1px solid rgba(30, 64, 175, 0.9);
+      font-size: 0.75rem;
+    }
+
+    .planner-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .planner-row label {
+      flex: 1;
+      color: var(--muted);
+    }
+
+    .planner-row select {
+      flex: 0 0 80px;
+      background: #020617;
+      color: var(--text);
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 4px 6px;
+      font-size: 0.75rem;
+    }
+
+    .planner-row small {
+      display: block;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .planner-result {
+      margin-top: 6px;
+      border-radius: 10px;
+      padding: 7px 8px;
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.74rem;
+    }
+
+    .planner-result strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* TOAST / PUSH NOTIF */
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      width: min(380px, 90vw);
+      background: radial-gradient(circle at top left, var(--danger-soft), #020617);
+      border-radius: 18px;
+      padding: 10px 12px;
+      border: 1px solid rgba(248, 113, 113, 0.7);
+      color: var(--text);
+      font-size: 0.78rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      z-index: 50;
+      opacity: 0;
+      transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(248, 113, 113, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+    }
+
+    .toast-content-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .toast-actions {
+      margin-top: 4px;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .toast-close {
+      margin-left: auto;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 14px 6px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-shell">
+    <div class="page">
+      <header>
+        <div class="logo">
+          <div class="logo-mark"></div>
+          <div>
+            <div class="logo-text-title">SmartEnergy Alert</div>
+            <div class="logo-text-sub" id="t-logo-sub">Created by youth · Adjud, RO</div>
+          </div>
+        </div>
+
+        <nav>
+          <a href="#demo" id="t-nav-demo">Demo</a>
+          <a href="#planner" id="t-nav-planner">Planner</a>
+          <a href="#youth" id="t-nav-team">Team</a>
+        </nav>
+
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="en">
+            <span class="flag">🇬🇧</span><span>EN</span>
+          </button>
+          <button class="lang-btn" data-lang="ro">
+            <span class="flag">🇷🇴</span><span>RO</span>
+          </button>
+        </div>
+
+        <button class="btn-pill" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
+          <span class="icon">▶</span>
+          <span id="t-header-demo-btn">Demo</span>
+        </button>
+      </header>
+
+      <main>
+        <!-- HERO -->
+        <section class="hero" id="top">
+          <div>
+            <div class="eyebrow" id="t-hero-eyebrow">
+              Energy awareness · Digital skills · Youth innovation
+            </div>
+            <h1 id="t-hero-title">
+              An app that tells the city<br />
+              <span>when electricity is really cheaper</span>.
+            </h1>
+            <p class="hero-lead" id="t-hero-lead">
+              SmartEnergy Alert is a web & app prototype designed by young people from Adjud and the EU
+              to help citizens decide the best time to use electricity and save money, in a simple and friendly way.
+            </p>
+
+            <div class="hero-meta">
+              <div class="hero-tag" id="t-hero-meta-1"><strong>33</strong> young participants</div>
+              <div class="hero-tag" id="t-hero-meta-2"><strong>21</strong> from Adjud, Vrancea</div>
+              <div class="hero-tag" id="t-hero-meta-3"><strong>12</strong> from EU countries (online)</div>
+            </div>
+
+            <div class="hero-actions">
+              <button class="btn-pill" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
+                <span class="icon">⚡</span>
+                <span id="t-btn-demo-main">Try the energy demo</span>
+              </button>
+              <button class="btn-ghost" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+                <span class="icon">ℹ️</span>
+                <span id="t-btn-learn-more">Learn how youth built it</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- DEMO CARD -->
+        <section id="demo">
+          <div class="section-kicker" id="t-demo-kicker">Live demo</div>
+          <h2 class="section-title" id="t-demo-title">Check the energy mood of the day</h2>
+          <p class="section-lead" id="t-demo-lead">
+            Move the slider to simulate any hour and see if electricity is cheap, normal or expensive.
+            When prices become very high, the app sends a push-style alert so people can avoid peak hours.
+          </p>
+
+          <div class="demo-card">
+            <div class="demo-header">
+              <div>
+                <div class="demo-header-title" id="t-demo-header-title">SmartEnergy Alert · Simulation</div>
+                <div class="demo-header-sub" id="t-demo-header-sub">
+                  Typical day curve for a household in Adjud
+                </div>
+              </div>
+              <div class="demo-badge" id="t-demo-badge">Prototype by youth</div>
+            </div>
+
+            <div class="demo-body">
+              <div class="demo-row">
+                <div>
+                  <div class="demo-label" id="t-demo-current-label">Current hour</div>
+                  <div class="demo-value" id="demo-hour">14:00</div>
+                </div>
+                <div class="demo-status-pill" id="demo-status-pill">
+                  <span class="status-dot" id="status-dot"></span>
+                  <span id="demo-status-text">Cheap energy</span>
+                </div>
+              </div>
+
+              <div class="demo-row">
+                <div>
+                  <div class="demo-label" id="t-demo-estimated-label">Estimated price</div>
+                  <div class="demo-value" id="demo-price">0.45 lei / kWh</div>
+                </div>
+                <div class="demo-label" id="demo-zone-label">Green zone · good to use washing machine</div>
+              </div>
+
+              <div class="demo-slider">
+                <label>
+                  <span>0:00</span>
+                  <span id="t-demo-slider-label">Select an hour of the day</span>
+                  <span>23:00</span>
+                </label>
+                <input type="range" min="0" max="23" value="14" id="demo-range" />
+              </div>
+
+              <div class="demo-message" id="demo-message">
+                <strong id="t-demo-rec-title">Recommendation for your home:</strong>
+                This is a very good moment to use high-consumption devices such as the washing machine, dishwasher or electric oven.
+              </div>
+
+              <div class="demo-footnote" id="t-demo-footnote">
+                This is a visual simulation created by participants – values are approximate.
+              </div>
+            </div>
+
+            <div class="floating-tag" id="t-demo-floating-tag">
+              Built in EduHack Adjud 2025 – Digital Skills for Equal Futures
+            </div>
+          </div>
+        </section>
+
+        <!-- PLANNER: COST ESTIMATOR -->
+        <section id="planner">
+          <div class="section-kicker" id="t-planner-kicker">Plan your usage</div>
+          <h2 class="section-title" id="t-planner-title">Estimate your cost from hour X to hour Y</h2>
+          <p class="section-lead" id="t-planner-lead">
+            Choose a time interval for using an appliance and see the average price and an estimated cost.
+            This helps families decide when to run devices like washing machines, ovens or heaters.
+          </p>
+
+          <div class="planner-grid">
+            <div class="planner-controls">
+              <div class="planner-row">
+                <label for="interval-start" id="t-planner-start-label">
+                  Start hour
+                  <small id="t-planner-start-small">(when you turn the appliance on)</small>
+                </label>
+                <select id="interval-start"></select>
+              </div>
+
+              <div class="planner-row">
+                <label for="interval-end" id="t-planner-end-label">
+                  End hour
+                  <small id="t-planner-end-small">(when you turn it off)</small>
+                </label>
+                <select id="interval-end"></select>
+              </div>
+
+              <div class="planner-result">
+                <strong id="t-planner-result-title">Estimated cost for this interval</strong>
+                <div id="interval-summary"></div>
+                <div id="interval-advice" style="margin-top:4px;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT PROJECT -->
+        <section id="about">
+          <div class="section-kicker" id="t-about-kicker">About the project</div>
+          <h2 class="section-title" id="t-about-title">What is SmartEnergy Alert?</h2>
+          <p class="section-lead" id="t-about-lead1">
+            SmartEnergy Alert is an educational prototype of a mobile and web app created by young people in Adjud, Romania,
+            together with peers from several EU countries. The idea is simple: citizens receive real-time alerts about electricity prices during the day, explained in language that anyone can understand.
+          </p>
+
+          <p class="section-lead" id="t-about-lead2" style="margin-bottom:6px;">
+            The goal is not only to build an app, but to show that youth can read data about their city, understand it and turn it into a useful digital tool for the community.
+          </p>
+
+          <div class="pill-list">
+            <div class="pill" id="t-about-pill-1">Real problem from the community</div>
+            <div class="pill" id="t-about-pill-2">Co-designed by youth</div>
+            <div class="pill" id="t-about-pill-3">Digital skills + energy awareness</div>
+            <div class="pill" id="t-about-pill-4">Supports vulnerable families</div>
+          </div>
+        </section>
+
+        <!-- YOUTH TEAM -->
+        <section id="youth">
+          <div class="section-kicker" id="t-youth-kicker">Youth participation</div>
+          <h2 class="section-title" id="t-youth-title">Created by young people for their own city</h2>
+          <p class="section-lead" id="t-youth-lead">
+            The project was developed during EduHack Adjud 2025 by 33 young people:
+            21 participants from Adjud and the Vrancea region, and 12 participants from several EU countries.
+            They worked together online and onsite to design the concept, test ideas and shape the prototype.
+          </p>
+
+          <div class="card-grid">
+            <div class="person-card">
+              <div class="person-role" id="t-youth-role-1">Problem mapping</div>
+              <div class="person-name" id="t-youth-name-1">Local youth from Adjud</div>
+              <div class="person-note" id="t-youth-note-1">
+                Identified real situations where families struggle with high energy bills and moments when they use power-intensive devices.
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-role" id="t-youth-role-2">Data & logic</div>
+              <div class="person-name" id="t-youth-name-2">STEM-oriented participants</div>
+              <div class="person-note" id="t-youth-note-2">
+                Designed a simple rule-based model to classify hours of the day into cheap, normal or expensive and to simulate prices in the demo.
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-role" id="t-youth-role-3">UX & interface</div>
+              <div class="person-name" id="t-youth-name-3">Creative & design team</div>
+              <div class="person-note" id="t-youth-note-3">
+                Sketched screens for the app: home view, price graph, notifications and statistics that are easy to understand for non-technical users.
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-role" id="t-youth-role-4">Testing & feedback</div>
+              <div class="person-name" id="t-youth-name-4">Peers & community</div>
+              <div class="person-note" id="t-youth-note-4">
+                Tested the idea with other students and adults, checking how clear the messages are and how they would use the alerts in real life.
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-role" id="t-youth-role-5">Storytelling</div>
+              <div class="person-name" id="t-youth-name-5">Communication group</div>
+              <div class="person-note" id="t-youth-note-5">
+                Wrote the project story, presentation slides and short messages to explain why the app matters for the city and for vulnerable families.
+              </div>
+            </div>
+            <div class="person-card">
+              <div class="person-role" id="t-youth-role-6">Coordination</div>
+              <div class="person-name" id="t-youth-name-6">Educators & mentors</div>
+              <div class="person-note" id="t-youth-note-6">
+                Facilitated the process, guided the teams through digital tools and ensured the focus on inclusion, sustainability and local needs.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROGRAM / ORGANISATION -->
+        <section id="program">
+          <div class="section-kicker" id="t-program-kicker">Hackathon journey</div>
+          <h2 class="section-title" id="t-program-title">How the program was organised</h2>
+          <p class="section-lead" id="t-program-lead">
+            The SmartEnergy Alert prototype was developed in one intensive educational hackathon day in Adjud, with preparation and follow-up activities online.
+            The event combined teamwork, creativity, data exploration and reflection on energy use and equality.
+          </p>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-title" id="t-timeline-title-1">Opening and context</div>
+              <div class="timeline-text" id="t-timeline-text-1">
+                Presentation of the energy challenge and how digital tools can help communities save and plan better.
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-title" id="t-timeline-title-2">Brainstorming & problem stories</div>
+              <div class="timeline-text" id="t-timeline-text-2">
+                Youth collected real stories from their families and neighbours about electricity bills and habits at home.
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-title" id="t-timeline-title-3">Idea selection</div>
+              <div class="timeline-text" id="t-timeline-text-3">
+                Teams voted and chose to focus on a clear idea: “show people when it is cheaper to use electricity during the day”.
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-title" id="t-timeline-title-4">Prototyping & demo</div>
+              <div class="timeline-text" id="t-timeline-text-4">
+                Participants created first mockups, the animated slider demo and explanations for different user groups.
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-title" id="t-timeline-title-5">Presentations & reflection</div>
+              <div class="timeline-text" id="t-timeline-text-5">
+                The youth presented SmartEnergy Alert and discussed how it could be turned into a real app in the future.
+              </div>
+            </div>
+          </div>
+
+          <div class="badge-strip">
+            <div class="badge" id="t-badge-1">Digital skills & basic coding</div>
+            <div class="badge" id="t-badge-2">Data literacy & graph reading</div>
+            <div class="badge" id="t-badge-3">Energy awareness</div>
+            <div class="badge" id="t-badge-4">Teamwork & communication</div>
+            <div class="badge" id="t-badge-5">Problem-solving</div>
+            <div class="badge" id="t-badge-6">European collaboration</div>
+          </div>
+        </section>
+
+        <!-- SUPPORT / ORANGE FOUNDATION -->
+        <section id="support">
+          <div class="section-kicker" id="t-support-kicker">Support</div>
+          <h2 class="section-title" id="t-support-title">Supported by Fundația Orange România</h2>
+          <p class="section-lead" id="t-support-lead">
+            This educational prototype was developed in Adjud within activities supported by Fundația Orange România,
+            through Orange Digital Center and local partners, empowering young people to create digital solutions for their community.
+          </p>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="footer-note" id="t-footer-note">
+          This page presents an educational web prototype created by young people during EduHack Adjud 2025.
+          The simulation above can be further developed into a full web or mobile application together with local and European partners.
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- PUSH STYLE TOAST -->
+  <div class="toast" id="toast">
+    <div class="toast-icon">!</div>
+    <div>
+      <div class="toast-content-title" id="t-toast-title">Peak energy alert</div>
+      <div id="toast-text">
+        Electricity is expensive in this hour. Try to avoid using high-consumption devices if possible.
+      </div>
+      <div class="toast-actions" id="t-toast-actions">
+        Tip: plan washing, ironing or heating for green (cheap) intervals in the planner section.
+      </div>
+    </div>
+    <button class="toast-close" onclick="hideToast()">×</button>
+  </div>
+
+  <script>
+    const range = document.getElementById("demo-range");
+    const hourEl = document.getElementById("demo-hour");
+    const priceEl = document.getElementById("demo-price");
+    const statusTextEl = document.getElementById("demo-status-text");
+    const zoneLabelEl = document.getElementById("demo-zone-label");
+    const msgEl = document.getElementById("demo-message");
+    const statusPill = document.getElementById("demo-status-pill");
+    const dotEl = document.getElementById("status-dot");
+    const toastEl = document.getElementById("toast");
+    const toastTextEl = document.getElementById("toast-text");
+
+    const startSelect = document.getElementById("interval-start");
+    const endSelect = document.getElementById("interval-end");
+    const intervalSummaryEl = document.getElementById("interval-summary");
+    const intervalAdviceEl = document.getElementById("interval-advice");
+
+    let currentLang = "en";
+    let lastZone = "normal";
+    let toastTimeout = null;
+
+    const uiTexts = {
+      en: {
+        "logo-sub": "Created by youth · Adjud, RO",
+        "nav-demo": "Demo",
+        "nav-planner": "Planner",
+        "nav-team": "Team",
+        "header-demo-btn": "Demo",
+        "hero-eyebrow": "Energy awareness · Digital skills · Youth innovation",
+        "hero-title": 'An app that tells the city<br /><span>when electricity is really cheaper</span>.',
+        "hero-lead":
+          "SmartEnergy Alert is a web & app prototype designed by young people from Adjud and the EU to help citizens decide the best time to use electricity and save money, in a simple and friendly way.",
+        "hero-meta-1": "33 young participants",
+        "hero-meta-2": "21 from Adjud, Vrancea",
+        "hero-meta-3": "12 from EU countries (online)",
+        "btn-demo-main": "Try the energy demo",
+        "btn-learn-more": "Learn how youth built it",
+
+        "demo-kicker": "Live demo",
+        "demo-title": "Check the energy mood of the day",
+        "demo-lead":
+          "Move the slider to simulate any hour and see if electricity is cheap, normal or expensive. When prices become very high, the app sends a push-style alert so people can avoid peak hours.",
+        "demo-header-title": "SmartEnergy Alert · Simulation",
+        "demo-header-sub": "Typical day curve for a household in Adjud",
+        "demo-badge": "Prototype by youth",
+        "demo-current-label": "Current hour",
+        "demo-estimated-label": "Estimated price",
+        "demo-slider-label": "Select an hour of the day",
+        "demo-rec-title": "Recommendation for your home:",
+        "demo-footnote":
+          "This is a visual simulation created by participants – values are approximate.",
+        "demo-floating-tag":
+          "Built in EduHack Adjud 2025 – Digital Skills for Equal Futures",
+
+        "planner-kicker": "Plan your usage",
+        "planner-title": "Estimate your cost from hour X to hour Y",
+        "planner-lead":
+          "Choose a time interval for using an appliance and see the average price and an estimated cost. This helps families decide when to run devices like washing machines, ovens or heaters.",
+        "planner-start-label": "Start hour",
+        "planner-start-small": "(when you turn the appliance on)",
+        "planner-end-label": "End hour",
+        "planner-end-small": "(when you turn it off)",
+        "planner-result-title": "Estimated cost for this interval",
+
+        "about-kicker": "About the project",
+        "about-title": "What is SmartEnergy Alert?",
+        "about-lead1":
+          "SmartEnergy Alert is an educational prototype of a mobile and web app created by young people in Adjud, Romania, together with peers from several EU countries. The idea is simple: citizens receive real-time alerts about electricity prices during the day, explained in language that anyone can understand.",
+        "about-lead2":
+          "The goal is not only to build an app, but to show that youth can read data about their city, understand it and turn it into a useful digital tool for the community.",
+        "about-pill-1": "Real problem from the community",
+        "about-pill-2": "Co-designed by youth",
+        "about-pill-3": "Digital skills + energy awareness",
+        "about-pill-4": "Supports vulnerable families",
+
+        "youth-kicker": "Youth participation",
+        "youth-title": "Created by young people for their own city",
+        "youth-lead":
+          "The project was developed during EduHack Adjud 2025 by 33 young people: 21 participants from Adjud and the Vrancea region, and 12 participants from several EU countries. They worked together online and onsite to design the concept, test ideas and shape the prototype.",
+        "youth-role-1": "Problem mapping",
+        "youth-name-1": "Local youth from Adjud",
+        "youth-note-1":
+          "Identified real situations where families struggle with high energy bills and moments when they use power-intensive devices.",
+        "youth-role-2": "Data & logic",
+        "youth-name-2": "STEM-oriented participants",
+        "youth-note-2":
+          "Designed a simple rule-based model to classify hours of the day into cheap, normal or expensive and to simulate prices in the demo.",
+        "youth-role-3": "UX & interface",
+        "youth-name-3": "Creative & design team",
+        "youth-note-3":
+          "Sketched screens for the app: home view, price graph, notifications and statistics that are easy to understand for non-technical users.",
+        "youth-role-4": "Testing & feedback",
+        "youth-name-4": "Peers & community",
+        "youth-note-4":
+          "Tested the idea with other students and adults, checking how clear the messages are and how they would use the alerts in real life.",
+        "youth-role-5": "Storytelling",
+        "youth-name-5": "Communication group",
+        "youth-note-5":
+          "Wrote the project story, presentation slides and short messages to explain why the app matters for the city and for vulnerable families.",
+        "youth-role-6": "Coordination",
+        "youth-name-6": "Educators & mentors",
+        "youth-note-6":
+          "Facilitated the process, guided the teams through digital tools and ensured the focus on inclusion, sustainability and local needs.",
+
+        "program-kicker": "Hackathon journey",
+        "program-title": "How the program was organised",
+        "program-lead":
+          "The SmartEnergy Alert prototype was developed in one intensive educational hackathon day in Adjud, with preparation and follow-up activities online. The event combined teamwork, creativity, data exploration and reflection on energy use and equality.",
+        "timeline-title-1": "Opening and context",
+        "timeline-text-1":
+          "Presentation of the energy challenge and how digital tools can help communities save and plan better.",
+        "timeline-title-2": "Brainstorming & problem stories",
+        "timeline-text-2":
+          "Youth collected real stories from their families and neighbours about electricity bills and habits at home.",
+        "timeline-title-3": "Idea selection",
+        "timeline-text-3":
+          "Teams voted and chose to focus on a clear idea: “show people when it is cheaper to use electricity during the day”.",
+        "timeline-title-4": "Prototyping & demo",
+        "timeline-text-4":
+          "Participants created first mockups, the animated slider demo and explanations for different user groups.",
+        "timeline-title-5": "Presentations & reflection",
+        "timeline-text-5":
+          "The youth presented SmartEnergy Alert and discussed how it could be turned into a real app in the future.",
+        "badge-1": "Digital skills & basic coding",
+        "badge-2": "Data literacy & graph reading",
+        "badge-3": "Energy awareness",
+        "badge-4": "Teamwork & communication",
+        "badge-5": "Problem-solving",
+        "badge-6": "European collaboration",
+
+        "support-kicker": "Support",
+        "support-title": "Supported by Fundația Orange România",
+        "support-lead":
+          "This educational prototype was developed in Adjud within activities supported by Fundația Orange România, through Orange Digital Center and local partners, empowering young people to create digital solutions for their community.",
+
+        "footer-note":
+          "This page presents an educational web prototype created by young people during EduHack Adjud 2025. The simulation above can be further developed into a full web or mobile application together with local and European partners.",
+
+        "toast-title": "Peak energy alert",
+        "toast-actions":
+          "Tip: plan washing, ironing or heating for green (cheap) intervals in the planner section."
+      },
+      ro: {
+        "logo-sub": "Creată de tineri · Adjud, RO",
+        "nav-demo": "Demo",
+        "nav-planner": "Planificare",
+        "nav-team": "Echipă",
+        "header-demo-btn": "Demo",
+        "hero-eyebrow": "Conștientizare energetică · Competențe digitale · Inovație pentru tineri",
+        "hero-title":
+          'O aplicație care spune orașului<br /><span>când electricitatea este cu adevărat mai ieftină</span>.',
+        "hero-lead":
+          "SmartEnergy Alert este un prototip web & app creat de tineri din Adjud și din UE pentru a ajuta locuitorii să aleagă momentul potrivit pentru a consuma energie electrică și a economisi bani, într-un mod simplu și prietenos.",
+        "hero-meta-1": "33 de tineri participanți",
+        "hero-meta-2": "21 din Adjud, Vrancea",
+        "hero-meta-3": "12 din țări ale UE (online)",
+        "btn-demo-main": "Pornește demo-ul de energie",
+        "btn-learn-more": "Află cum au construit tinerii",
+
+        "demo-kicker": "Demo live",
+        "demo-title": "Verifică „starea” energiei pe timpul zilei",
+        "demo-lead":
+          "Mută slider-ul pentru a simula orice oră și vezi dacă energia este ieftină, normală sau scumpă. Când prețurile devin foarte mari, aplicația trimite un mesaj de tip notificare pentru a evita orele de vârf.",
+        "demo-header-title": "SmartEnergy Alert · Simulare",
+        "demo-header-sub": "Curbă tipică pentru o zi într-o gospodărie din Adjud",
+        "demo-badge": "Prototip realizat de tineri",
+        "demo-current-label": "Ora curentă",
+        "demo-estimated-label": "Preț estimativ",
+        "demo-slider-label": "Selectează o oră din zi",
+        "demo-rec-title": "Recomandare pentru locuința ta:",
+        "demo-footnote":
+          "Aceasta este o simulare vizuală realizată de participanți – valorile sunt aproximative.",
+        "demo-floating-tag":
+          "Creat în EduHack Adjud 2025 – Digital Skills for Equal Futures",
+
+        "planner-kicker": "Planifică-ți consumul",
+        "planner-title": "Estimează costul între ora X și ora Y",
+        "planner-lead":
+          "Alege un interval de timp pentru utilizarea unui aparat electrocasnic și vezi prețul mediu și un cost estimativ. Acest lucru ajută familiile să decidă când să folosească mașina de spălat, cuptorul sau încălzirea.",
+        "planner-start-label": "Ora de început",
+        "planner-start-small": "(când pornești aparatul)",
+        "planner-end-label": "Ora de sfârșit",
+        "planner-end-small": "(când îl oprești)",
+        "planner-result-title": "Cost estimativ pentru acest interval",
+
+        "about-kicker": "Despre proiect",
+        "about-title": "Ce este SmartEnergy Alert?",
+        "about-lead1":
+          "SmartEnergy Alert este un prototip educațional de aplicație web și mobilă creat de tineri din Adjud, România, împreună cu colegi din mai multe țări europene. Ideea este simplă: locuitorii primesc mesaje în timp real despre prețul energiei electrice pe parcursul zilei, explicate pe înțelesul tuturor.",
+        "about-lead2":
+          "Scopul nu este doar construirea unei aplicații, ci și arătarea faptului că tinerii pot citi date despre orașul lor, le pot înțelege și le pot transforma într-un instrument digital util pentru comunitate.",
+        "about-pill-1": "Problemă reală din comunitate",
+        "about-pill-2": "Co-creat împreună cu tinerii",
+        "about-pill-3": "Competențe digitale + educație energetică",
+        "about-pill-4": "Sprijină familiile vulnerabile",
+
+        "youth-kicker": "Participarea tinerilor",
+        "youth-title": "Creat de tineri pentru propriul lor oraș",
+        "youth-lead":
+          "Proiectul a fost dezvoltat în cadrul EduHack Adjud 2025 de 33 de tineri: 21 de participanți din Adjud și zona Vrancea și 12 tineri din mai multe țări europene. Ei au lucrat împreună, online și față în față, pentru a contura ideea, a testa soluții și a realiza prototipul.",
+        "youth-role-1": "Cartografierea problemei",
+        "youth-name-1": "Tinerii locali din Adjud",
+        "youth-note-1":
+          "Au identificat situații reale în care familiile se confruntă cu facturi mari la energie și momentele în care folosesc aparate cu consum ridicat.",
+        "youth-role-2": "Date & logică",
+        "youth-name-2": "Participanți pasionați de STEM",
+        "youth-note-2":
+          "Au creat un model simplu de reguli pentru a clasifica orele zilei în ieftine, normale sau scumpe și pentru a simula valorile în demo.",
+        "youth-role-3": "Experiență de utilizare (UX) & interfață",
+        "youth-name-3": "Echipa creativă & design",
+        "youth-note-3":
+          "A schițat ecranele aplicației: ecran principal, grafic de prețuri, notificări și statistici ușor de înțeles pentru persoane fără pregătire tehnică.",
+        "youth-role-4": "Testare & feedback",
+        "youth-name-4": "Colegii și comunitatea",
+        "youth-note-4":
+          "Au testat ideea cu alți elevi și adulți, verificând cât de clare sunt mesajele și cum ar folosi alertele în viața de zi cu zi.",
+        "youth-role-5": "Poveste & comunicare",
+        "youth-name-5": "Grupul de comunicare",
+        "youth-note-5":
+          "A redactat povestea proiectului, prezentările și mesajele scurte pentru a explica de ce aplicația este importantă pentru oraș și pentru familiile vulnerabile.",
+        "youth-role-6": "Coordonare",
+        "youth-name-6": "Cadre didactice & mentori",
+        "youth-note-6":
+          "Au facilitat procesul, au ghidat echipele în utilizarea instrumentelor digitale și au menținut accentul pe incluziune, sustenabilitate și nevoile locale.",
+
+        "program-kicker": "Parcursul hackathonului",
+        "program-title": "Cum a fost organizat programul",
+        "program-lead":
+          "Prototipul SmartEnergy Alert a fost dezvoltat într-o zi intensivă de hackathon educațional la Adjud, cu activități de pregătire și follow-up online. Evenimentul a îmbinat munca în echipă, creativitatea, explorarea datelor și reflecția asupra consumului de energie și a echității.",
+        "timeline-title-1": "Deschidere și context",
+        "timeline-text-1":
+          "Prezentarea provocării legate de energie și a modului în care instrumentele digitale pot ajuta comunitățile să economisească și să planifice mai bine.",
+        "timeline-title-2": "Brainstorming & povești reale",
+        "timeline-text-2":
+          "Tinerii au adunat povești reale din familiile și vecinii lor despre facturile la energie și obiceiurile de consum din locuințe.",
+        "timeline-title-3": "Selectarea ideii",
+        "timeline-text-3":
+          "Echipele au votat și au ales să se concentreze pe o idee clară: „să arătăm oamenilor când este mai ieftin să folosească energia în timpul zilei”.",
+        "timeline-title-4": "Prototipare & demo",
+        "timeline-text-4":
+          "Participanții au realizat primele machete, demo-ul animat cu slider și explicații adaptate pentru diferite tipuri de utilizatori.",
+        "timeline-title-5": "Prezentări & reflecție",
+        "timeline-text-5":
+          "Tinerii au prezentat SmartEnergy Alert și au discutat cum ar putea fi transformat într-o aplicație reală în viitor.",
+        "badge-1": "Competențe digitale & programare de bază",
+        "badge-2": "Literație în date & citirea graficelor",
+        "badge-3": "Educație pentru energie",
+        "badge-4": "Lucru în echipă & comunicare",
+        "badge-5": "Rezolvare de probleme",
+        "badge-6": "Colaborare europeană",
+
+        "support-kicker": "Susținere",
+        "support-title": "Susținut de Fundația Orange România",
+        "support-lead":
+          "Acest prototip educațional a fost dezvoltat la Adjud în cadrul activităților susținute de Fundația Orange România, prin Orange Digital Center și partenerii locali, oferind tinerilor șansa de a crea soluții digitale pentru comunitatea lor.",
+
+        "footer-note":
+          "Această pagină prezintă un prototip educațional web creat de tineri în cadrul EduHack Adjud 2025. Simularea de mai sus poate fi dezvoltată mai departe într-o aplicație web sau mobilă completă, împreună cu parteneri locali și europeni.",
+
+        "toast-title": "Alertă de vârf de consum",
+        "toast-actions":
+          "Sugestie: planifică spălatul, călcatul sau încălzirea în intervalele verzi (ieftine) din secțiunea de planificare."
+      }
+    };
+
+    const textMappings = [
+      { id: "t-logo-sub", key: "logo-sub", type: "text" },
+      { id: "t-nav-demo", key: "nav-demo", type: "text" },
+      { id: "t-nav-planner", key: "nav-planner", type: "text" },
+      { id: "t-nav-team", key: "nav-team", type: "text" },
+      { id: "t-header-demo-btn", key: "header-demo-btn", type: "text" },
+
+      { id: "t-hero-eyebrow", key: "hero-eyebrow", type: "text" },
+      { id: "t-hero-title", key: "hero-title", type: "html" },
+      { id: "t-hero-lead", key: "hero-lead", type: "text" },
+      { id: "t-hero-meta-1", key: "hero-meta-1", type: "text" },
+      { id: "t-hero-meta-2", key: "hero-meta-2", type: "text" },
+      { id: "t-hero-meta-3", key: "hero-meta-3", type: "text" },
+      { id: "t-btn-demo-main", key: "btn-demo-main", type: "text" },
+      { id: "t-btn-learn-more", key: "btn-learn-more", type: "text" },
+
+      { id: "t-demo-kicker", key: "demo-kicker", type: "text" },
+      { id: "t-demo-title", key: "demo-title", type: "text" },
+      { id: "t-demo-lead", key: "demo-lead", type: "text" },
+      { id: "t-demo-header-title", key: "demo-header-title", type: "text" },
+      { id: "t-demo-header-sub", key: "demo-header-sub", type: "text" },
+      { id: "t-demo-badge", key: "demo-badge", type: "text" },
+      { id: "t-demo-current-label", key: "demo-current-label", type: "text" },
+      { id: "t-demo-estimated-label", key: "demo-estimated-label", type: "text" },
+      { id: "t-demo-slider-label", key: "demo-slider-label", type: "text" },
+      { id: "t-demo-rec-title", key: "demo-rec-title", type: "text" },
+      { id: "t-demo-footnote", key: "demo-footnote", type: "text" },
+      { id: "t-demo-floating-tag", key: "demo-floating-tag", type: "text" },
+
+      { id: "t-planner-kicker", key: "planner-kicker", type: "text" },
+      { id: "t-planner-title", key: "planner-title", type: "text" },
+      { id: "t-planner-lead", key: "planner-lead", type: "text" },
+      { id: "t-planner-start-label", key: "planner-start-label", type: "text" },
+      { id: "t-planner-start-small", key: "planner-start-small", type: "text" },
+      { id: "t-planner-end-label", key: "planner-end-label", type: "text" },
+      { id: "t-planner-end-small", key: "planner-end-small", type: "text" },
+      { id: "t-planner-result-title", key: "planner-result-title", type: "text" },
+
+      { id: "t-about-kicker", key: "about-kicker", type: "text" },
+      { id: "t-about-title", key: "about-title", type: "text" },
+      { id: "t-about-lead1", key: "about-lead1", type: "text" },
+      { id: "t-about-lead2", key: "about-lead2", type: "text" },
+      { id: "t-about-pill-1", key: "about-pill-1", type: "text" },
+      { id: "t-about-pill-2", key: "about-pill-2", type: "text" },
+      { id: "t-about-pill-3", key: "about-pill-3", type: "text" },
+      { id: "t-about-pill-4", key: "about-pill-4", type: "text" },
+
+      { id: "t-youth-kicker", key: "youth-kicker", type: "text" },
+      { id: "t-youth-title", key: "youth-title", type: "text" },
+      { id: "t-youth-lead", key: "youth-lead", type: "text" },
+      { id: "t-youth-role-1", key: "youth-role-1", type: "text" },
+      { id: "t-youth-name-1", key: "youth-name-1", type: "text" },
+      { id: "t-youth-note-1", key: "youth-note-1", type: "text" },
+      { id: "t-youth-role-2", key: "youth-role-2", type: "text" },
+      { id: "t-youth-name-2", key: "youth-name-2", type: "text" },
+      { id: "t-youth-note-2", key: "youth-note-2", type: "text" },
+      { id: "t-youth-role-3", key: "youth-role-3", type: "text" },
+      { id: "t-youth-name-3", key: "youth-name-3", type: "text" },
+      { id: "t-youth-note-3", key: "youth-note-3", type: "text" },
+      { id: "t-youth-role-4", key: "youth-role-4", type: "text" },
+      { id: "t-youth-name-4", key: "youth-name-4", type: "text" },
+      { id: "t-youth-note-4", key: "youth-note-4", type: "text" },
+      { id: "t-youth-role-5", key: "youth-role-5", type: "text" },
+      { id: "t-youth-name-5", key: "youth-name-5", type: "text" },
+      { id: "t-youth-note-5", key: "youth-note-5", type: "text" },
+      { id: "t-youth-role-6", key: "youth-role-6", type: "text" },
+      { id: "t-youth-name-6", key: "youth-name-6", type: "text" },
+      { id: "t-youth-note-6", key: "youth-note-6", type: "text" },
+
+      { id: "t-program-kicker", key: "program-kicker", type: "text" },
+      { id: "t-program-title", key: "program-title", type: "text" },
+      { id: "t-program-lead", key: "program-lead", type: "text" },
+      { id: "t-timeline-title-1", key: "timeline-title-1", type: "text" },
+      { id: "t-timeline-text-1", key: "timeline-text-1", type: "text" },
+      { id: "t-timeline-title-2", key: "timeline-title-2", type: "text" },
+      { id: "t-timeline-text-2", key: "timeline-text-2", type: "text" },
+      { id: "t-timeline-title-3", key: "timeline-title-3", type: "text" },
+      { id: "t-timeline-text-3", key: "timeline-text-3", type: "text" },
+      { id: "t-timeline-title-4", key: "timeline-title-4", type: "text" },
+      { id: "t-timeline-text-4", key: "timeline-text-4", type: "text" },
+      { id: "t-timeline-title-5", key: "timeline-title-5", type: "text" },
+      { id: "t-timeline-text-5", key: "timeline-text-5", type: "text" },
+      { id: "t-badge-1", key: "badge-1", type: "text" },
+      { id: "t-badge-2", key: "badge-2", type: "text" },
+      { id: "t-badge-3", key: "badge-3", type: "text" },
+      { id: "t-badge-4", key: "badge-4", type: "text" },
+      { id: "t-badge-5", key: "badge-5", type: "text" },
+      { id: "t-badge-6", key: "badge-6", type: "text" },
+
+      { id: "t-support-kicker", key: "support-kicker", type: "text" },
+      { id: "t-support-title", key: "support-title", type: "text" },
+      { id: "t-support-lead", key: "support-lead", type: "text" },
+
+      { id: "t-footer-note", key: "footer-note", type: "text" },
+
+      { id: "t-toast-title", key: "toast-title", type: "text" },
+      { id: "t-toast-actions", key: "toast-actions", type: "text" }
+    ];
+
+    const demoConfig = {
+      en: {
+        cheapStatus: "Cheap energy",
+        cheapZone: "Green zone · good to use washing machine",
+        cheapMsg:
+          "This is a very good moment to use high-consumption devices such as the washing machine, dishwasher or electric oven.",
+        normalStatus: "Normal price",
+        normalZone: "Yellow zone · use electricity with care",
+        normalMsg:
+          "The price is normal. You can use devices if needed, but you may save more by waiting for a green, cheaper interval later in the day.",
+        expensiveStatus: "Expensive energy",
+        expensiveZone: "Red zone · avoid high-consumption devices",
+        expensiveMsg:
+          "This is a peak price period. It is better to avoid using washing machines, electric heaters or ovens right now, if possible."
+      },
+      ro: {
+        cheapStatus: "Energie ieftină",
+        cheapZone: "Zonă verde · bun pentru mașina de spălat",
+        cheapMsg:
+          "Acesta este un moment foarte bun pentru a folosi aparate cu consum ridicat, precum mașina de spălat, mașina de spălat vase sau cuptorul electric.",
+        normalStatus: "Preț normal",
+        normalZone: "Zonă galbenă · folosește cu atenție",
+        normalMsg:
+          "Prețul este normal. Poți folosi aparatele dacă este nevoie, dar poți economisi mai mult așteptând un interval verde, mai ieftin, mai târziu în cursul zilei.",
+        expensiveStatus: "Energie scumpă",
+        expensiveZone: "Zonă roșie · evită aparatele mari",
+        expensiveMsg:
+          "Acesta este un interval de vârf de preț. Este mai bine să eviți, dacă se poate, utilizarea mașinii de spălat, a aparatelor de încălzire sau a cuptorului acum."
+      }
+    };
+
+    const toastMessages = {
+      en: "Electricity is expensive in this hour. If you can, shift washing, ironing or heating to a cheaper (green) interval.",
+      ro: "Electricitatea este scumpă în această oră. Dacă poți, mută spălatul, călcatul sau încălzirea într-un interval mai ieftin (verde)."
+    };
+
+    const plannerMessages = {
+      en: {
+        summary: (avg, cost) =>
+          `Average price: <strong>${avg.toFixed(
+            2
+          )} lei/kWh</strong>. For an estimated consumption of <strong>2 kWh</strong>, the approximate cost would be <strong>${cost.toFixed(
+            2
+          )} lei</strong>.`,
+        cheapAdvice:
+          "This looks like a green (cheap) interval. The app would highlight it in green and recommend it for heavy appliances.",
+        normalAdvice:
+          "This is a normal (yellow) interval. It is acceptable, but the app may suggest comparing with a cheaper option.",
+        expensiveAdvice:
+          "This is a red (expensive) interval. The app would suggest moving usage to cheaper hours if possible."
+      },
+      ro: {
+        summary: (avg, cost) =>
+          `Preț mediu: <strong>${avg.toFixed(
+            2
+          )} lei/kWh</strong>. Pentru un consum estimat de <strong>2 kWh</strong>, costul aproximativ ar fi de <strong>${cost.toFixed(
+            2
+          )} lei</strong>.`,
+        cheapAdvice:
+          "Acesta pare a fi un interval verde (ieftin). Aplicația l-ar evidenția cu verde și l-ar recomanda pentru aparate cu consum mare.",
+        normalAdvice:
+          "Acesta este un interval galben (normal). Este acceptabil, dar aplicația ar putea sugera să îl compari cu un interval mai ieftin.",
+        expensiveAdvice:
+          "Acesta este un interval roșu (scump). Aplicația ar recomanda, dacă se poate, mutarea consumului în ore mai ieftine."
+      }
+    };
+
+    function formatHour(h) {
+      const hh = String(h).padStart(2, "0");
+      return `${hh}:00`;
+    }
+
+    // simple simulated price curve (lei/kWh)
+    function getPriceForHour(h) {
+      if (h >= 0 && h < 6) return 0.4;
+      if (h >= 6 && h < 9) return 0.95;
+      if (h >= 9 && h < 13) return 0.7;
+      if (h >= 13 && h < 17) return 0.45;
+      if (h >= 17 && h < 22) return 1.05;
+      return 0.6;
+    }
+
+    function showToast(message) {
+      toastTextEl.textContent = message;
+      toastEl.classList.add("show");
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        hideToast();
+      }, 6000);
+    }
+
+    function hideToast() {
+      toastEl.classList.remove("show");
+    }
+
+    function updateDemo() {
+      const hour = parseInt(range.value, 10);
+      const price = getPriceForHour(hour);
+      const cfg = demoConfig[currentLang];
+
+      hourEl.textContent = formatHour(hour);
+      priceEl.textContent = price.toFixed(2) + " lei / kWh";
+
+      let status, zone, message;
+      let border, dot, glow;
+      let currentZone;
+
+      if (price <= 0.5) {
+        status = cfg.cheapStatus;
+        zone = cfg.cheapZone;
+        message = cfg.cheapMsg;
+        border = "1px solid rgba(34, 197, 94, 0.8)";
+        dot = "#22c55e";
+        glow = "0 0 14px rgba(34, 197, 94, 0.9)";
+        currentZone = "cheap";
+      } else if (price <= 0.8) {
+        status = cfg.normalStatus;
+        zone = cfg.normalZone;
+        message = cfg.normalMsg;
+        border = "1px solid rgba(234, 179, 8, 0.8)";
+        dot = "#eab308";
+        glow = "0 0 14px rgba(234, 179, 8, 0.9)";
+        currentZone = "normal";
+      } else {
+        status = cfg.expensiveStatus;
+        zone = cfg.expensiveZone;
+        message = cfg.expensiveMsg;
+        border = "1px solid rgba(248, 113, 113, 0.9)";
+        dot = "#f97373";
+        glow = "0 0 16px rgba(248, 113, 113, 0.9)";
+        currentZone = "expensive";
+      }
+
+      statusTextEl.textContent = status;
+      zoneLabelEl.textContent = zone;
+      msgEl.innerHTML =
+        "<strong>" + uiTexts[currentLang]["demo-rec-title"] + "</strong> " + message;
+      statusPill.style.border = border;
+      dotEl.style.background = dot;
+      dotEl.style.boxShadow = glow;
+
+      if (currentZone === "expensive" && lastZone !== "expensive") {
+        showToast(toastMessages[currentLang]);
+      }
+      lastZone = currentZone;
+    }
+
+    function fillHourSelect(select) {
+      select.innerHTML = "";
+      for (let h = 0; h < 24; h++) {
+        const opt = document.createElement("option");
+        opt.value = h;
+        opt.textContent = formatHour(h);
+        select.appendChild(opt);
+      }
+    }
+
+    function calculateIntervalStats() {
+      let start = parseInt(startSelect.value, 10);
+      let end = parseInt(endSelect.value, 10);
+
+      let hours = [];
+      if (start === end) {
+        hours = [start];
+      } else if (start < end) {
+        for (let h = start; h < end; h++) hours.push(h);
+      } else {
+        for (let h = start; h < 24; h++) hours.push(h);
+        for (let h = 0; h < end; h++) hours.push(h);
+      }
+
+      let sum = 0;
+      hours.forEach((h) => {
+        sum += getPriceForHour(h);
+      });
+
+      const avg = sum / hours.length;
+      const kwhExample = 2;
+      const estimatedCost = avg * kwhExample;
+
+      const pm = plannerMessages[currentLang];
+      intervalSummaryEl.innerHTML = pm.summary(avg, estimatedCost);
+
+      let advice;
+      if (avg <= 0.5) {
+        advice = pm.cheapAdvice;
+      } else if (avg <= 0.8) {
+        advice = pm.normalAdvice;
+      } else {
+        advice = pm.expensiveAdvice;
+      }
+      intervalAdviceEl.textContent = advice;
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const t = uiTexts[lang];
+
+      textMappings.forEach((m) => {
+        const el = document.getElementById(m.id);
+        if (!el) return;
+        const value = t[m.key];
+        if (value === undefined) return;
+        if (m.type === "html") {
+          el.innerHTML = value;
+        } else {
+          el.textContent = value;
+        }
+      });
+
+      updateDemo();
+      calculateIntervalStats();
+    }
+
+    // INIT
+    range.addEventListener("input", updateDemo);
+
+    fillHourSelect(startSelect);
+    fillHourSelect(endSelect);
+    startSelect.value = "13";
+    endSelect.value = "16";
+    startSelect.addEventListener("change", calculateIntervalStats);
+    endSelect.addEventListener("change", calculateIntervalStats);
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        setLanguage(lang);
+        document.querySelectorAll(".lang-btn").forEach((b) =>
+          b.classList.toggle("active", b === btn)
+        );
+      });
+    });
+
+    // first render
+    setLanguage("en");
+  </script>
+</body>
+</html>
