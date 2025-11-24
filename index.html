@@ -123,7 +123,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
+      gap: 10px;
       padding: 6px 4px 14px;
       position: sticky;
       top: 0;
@@ -141,18 +141,24 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
+    /* LOGO ANIMAT – CONTOR ENERGIE */
+
     .logo-mark {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 0%, #facc15, #22c55e 40%, #0ea5e9 100%);
+      background: radial-gradient(circle at 10% 0%, #0ea5e9, #22c55e 45%, #facc15 100%);
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-shadow:
         0 4px 0 rgba(15, 23, 42, 0.9),
-        0 12px 30px rgba(56, 189, 248, 0.6);
+        0 12px 30px rgba(56, 189, 248, 0.7);
+      overflow: visible;
     }
 
     .logo-mark::after {
@@ -164,10 +170,77 @@
       box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.8);
     }
 
+    .logo-core {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: #020617;
+      border: 2px solid rgba(15, 23, 42, 0.95);
+      box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.95);
+      z-index: 2;
+    }
+
+    .logo-ring {
+      position: absolute;
+      inset: 3px;
+      border-radius: 999px;
+      animation: logo-rotate 12s linear infinite;
+      z-index: 3;
+    }
+
+    .logo-digit {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: center center;
+      font-size: 7px;
+      font-weight: 700;
+      color: #020617;
+      text-shadow: 0 0 4px rgba(15, 23, 42, 0.6);
+      opacity: 0.92;
+    }
+
+    .logo-ring .logo-digit:nth-child(1) {
+      transform: translate(-50%, -50%) rotate(0deg) translateX(11px) rotate(0deg);
+    }
+    .logo-ring .logo-digit:nth-child(2) {
+      transform: translate(-50%, -50%) rotate(40deg) translateX(11px) rotate(-40deg);
+    }
+    .logo-ring .logo-digit:nth-child(3) {
+      transform: translate(-50%, -50%) rotate(80deg) translateX(11px) rotate(-80deg);
+    }
+    .logo-ring .logo-digit:nth-child(4) {
+      transform: translate(-50%, -50%) rotate(120deg) translateX(11px) rotate(-120deg);
+    }
+    .logo-ring .logo-digit:nth-child(5) {
+      transform: translate(-50%, -50%) rotate(160deg) translateX(11px) rotate(-160deg);
+    }
+    .logo-ring .logo-digit:nth-child(6) {
+      transform: translate(-50%, -50%) rotate(200deg) translateX(11px) rotate(-200deg);
+    }
+    .logo-ring .logo-digit:nth-child(7) {
+      transform: translate(-50%, -50%) rotate(240deg) translateX(11px) rotate(-240deg);
+    }
+    .logo-ring .logo-digit:nth-child(8) {
+      transform: translate(-50%, -50%) rotate(280deg) translateX(11px) rotate(-280deg);
+    }
+    .logo-ring .logo-digit:nth-child(9) {
+      transform: translate(-50%, -50%) rotate(320deg) translateX(11px) rotate(-320deg);
+    }
+
+    @keyframes logo-rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     .logo-text-title {
       font-weight: 700;
-      letter-spacing: 0.05em;
-      font-size: 0.78rem;
+      letter-spacing: 0.09em;
+      font-size: 0.8rem;
       text-transform: uppercase;
     }
 
@@ -184,7 +257,7 @@
       justify-content: flex-end;
     }
 
-    /* BUTOANE – CULORI VII, EFECT 3D (ALBASTRU + VERDE) */
+    /* BUTOANE – CULORI ALBASTRU+VERDE, EFECT 3D */
 
     .btn-pill {
       display: inline-flex;
@@ -203,7 +276,7 @@
       color: #020617;
       box-shadow:
         0 4px 0 rgba(5, 46, 22, 1),
-        0 16px 32px rgba(34, 197, 94, 0.6);
+        0 16px 32px rgba(56, 189, 248, 0.7);
       transition:
         transform 0.12s ease,
         box-shadow 0.12s ease,
@@ -220,7 +293,7 @@
       transform: translateY(-2px);
       box-shadow:
         0 6px 0 rgba(5, 46, 22, 1),
-        0 20px 40px rgba(14, 165, 233, 0.85);
+        0 20px 40px rgba(56, 189, 248, 0.9);
       filter: brightness(1.06);
     }
 
@@ -228,8 +301,8 @@
       transform: translateY(1px);
       box-shadow:
         0 2px 0 rgba(5, 46, 22, 1),
-        0 6px 14px rgba(15, 23, 42, 0.9);
-      filter: brightness(0.97);
+        0 8px 18px rgba(15, 23, 42, 0.95);
+      filter: brightness(0.96);
     }
 
     /* versiune albastru-verde pentru Add Device */
@@ -238,25 +311,21 @@
       background: linear-gradient(135deg, #0ea5e9, #22c55e);
       box-shadow:
         0 4px 0 rgba(15, 23, 42, 1),
-        0 18px 38px rgba(56, 189, 248, 0.8);
-      color: #f9fafb;
+        0 18px 38px rgba(56, 189, 248, 0.85);
+      color: #020617;
     }
 
     .btn-device:hover {
       box-shadow:
         0 6px 0 rgba(15, 23, 42, 1),
-        0 22px 44px rgba(56, 189, 248, 0.95);
+        0 22px 46px rgba(56, 189, 248, 0.95);
     }
 
     .btn-ghost {
       padding: 6px 11px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: radial-gradient(
-        circle at top,
-        rgba(56, 189, 248, 0.35),
-        rgba(15, 23, 42, 0.98)
-      );
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.26), rgba(15, 23, 42, 0.98));
       color: var(--muted);
       font-size: 0.72rem;
       cursor: pointer;
@@ -270,13 +339,9 @@
     }
 
     .btn-ghost:hover {
-      background: radial-gradient(
-        circle at top,
-        rgba(34, 197, 94, 0.4),
-        rgba(15, 23, 42, 1)
-      );
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.5), rgba(15, 23, 42, 1));
       color: var(--text);
-      border-color: rgba(56, 189, 248, 0.9);
+      border-color: rgba(56, 189, 248, 0.95);
       transform: translateY(-2px);
       box-shadow:
         0 5px 0 rgba(15, 23, 42, 0.9),
@@ -328,7 +393,7 @@
 
     section {
       border-radius: var(--radius-xl);
-      padding: 14px 14px 16px;
+      padding: 18px 18px 20px;
       background: radial-gradient(
         circle at top left,
         rgba(56, 189, 248, 0.16),
@@ -363,7 +428,7 @@
       border-radius: 24px;
       background: radial-gradient(
         circle at top,
-        rgba(56, 189, 248, 0.26),
+        rgba(56, 189, 248, 0.32),
         #020617 55%,
         #000 100%
       );
@@ -399,6 +464,7 @@
       font-size: 0.82rem;
       color: var(--muted);
       margin-bottom: 8px;
+      max-width: 720px;
     }
 
     .hero-meta {
@@ -433,6 +499,7 @@
       flex-wrap: wrap;
       gap: 7px;
       align-items: center;
+      margin-top: 6px;
       margin-bottom: 4px;
     }
 
@@ -710,11 +777,7 @@
       padding: 6px 7px;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.7);
-      background: radial-gradient(
-        circle at top,
-        rgba(56, 189, 248, 0.7),
-        rgba(15, 23, 42, 0.98)
-      );
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.6), rgba(15, 23, 42, 0.98));
       color: var(--muted);
       font-size: 0.66rem;
       text-transform: uppercase;
@@ -737,12 +800,8 @@
     }
 
     .bottom-nav-btn:hover {
-      background: radial-gradient(
-        circle at top,
-        rgba(34, 197, 94, 0.7),
-        rgba(15, 23, 42, 1)
-      );
-      border-color: rgba(56, 189, 248, 0.9);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.9), rgba(15, 23, 42, 1));
+      border-color: rgba(56, 189, 248, 0.95);
       color: var(--text);
       transform: translateY(-2px);
       box-shadow:
@@ -932,7 +991,7 @@
       font-weight: 600;
       box-shadow:
         0 4px 0 rgba(15, 118, 178, 1),
-        0 18px 36px rgba(14, 165, 233, 0.7);
+        0 18px 36px rgba(14, 165, 233, 0.8);
       transition: transform 0.12s, box-shadow 0.12s, filter 0.12s;
     }
 
@@ -940,7 +999,7 @@
       transform: translateY(-2px);
       box-shadow:
         0 6px 0 rgba(15, 118, 178, 1),
-        0 22px 44px rgba(14, 165, 233, 0.9);
+        0 22px 44px rgba(14, 165, 233, 0.95);
       filter: brightness(1.05);
     }
 
@@ -999,7 +1058,20 @@
     <div class="page">
       <header>
         <div class="logo">
-          <div class="logo-mark"></div>
+          <div class="logo-mark">
+            <div class="logo-core"></div>
+            <div class="logo-ring">
+              <span class="logo-digit">1</span>
+              <span class="logo-digit">2</span>
+              <span class="logo-digit">3</span>
+              <span class="logo-digit">4</span>
+              <span class="logo-digit">5</span>
+              <span class="logo-digit">6</span>
+              <span class="logo-digit">7</span>
+              <span class="logo-digit">8</span>
+              <span class="logo-digit">9</span>
+            </div>
+          </div>
           <div>
             <div class="logo-text-title">SmartEnergy Alert</div>
             <div class="logo-text-sub">
@@ -1049,19 +1121,20 @@
             </div>
 
             <h1>
-              <span data-lang="ro">O aplicație care spune orașului<br /><span>când energia este cu adevărat mai ieftină.</span></span>
-              <span data-lang="en">An app that tells the city<br /><span>when electricity is really cheaper.</span></span>
+              <span data-lang="ro">O aplicație smart care arată orașului<br /><span>când energia este cu adevărat mai ieftină.</span></span>
+              <span data-lang="en">A smart app that shows your city<br /><span>when electricity is really cheaper.</span></span>
             </h1>
 
             <p class="hero-lead">
               <span data-lang="ro">
-                SmartEnergy Alert este un prototip web & aplicație, gândit de tineri din Adjud pentru a ajuta
-                familiile să decidă, simplu și prietenos, care sunt cele mai bune ore pentru a folosi energia
-                electrică și a economisi bani.
+                SmartEnergy Alert este un prototip web & aplicație, gândit de tineri din Adjud, care transformă datele
+                despre energie în decizii simple pentru familii: la ce oră pornești mașina de spălat, cuptorul sau
+                alte aparate ca să plătești mai puțin și să consumi mai responsabil.
               </span>
               <span data-lang="en">
-                SmartEnergy Alert is a web & app prototype designed by young people from Adjud to help families
-                decide, in a simple and friendly way, the best hours to use electricity and save money.
+                SmartEnergy Alert is a web & app prototype designed by young people from Adjud that turns energy data
+                into simple decisions for families: when to run the washing machine, oven or other devices to pay less
+                and use electricity more responsibly.
               </span>
             </p>
 
