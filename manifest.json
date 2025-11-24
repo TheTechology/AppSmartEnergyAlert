@@ -1,0 +1,12 @@
+{
+  "background_color": "#ffffff",
+  "description": "SmartEnergy Alert – prototip web &amp; aplicație creat de tineri la EduHack Adjud 2025, pentru a ajuta familiile să aleagă momentele potrivite pentru consumul de energie electrică.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "SmartEnergy Alert AGV",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "SmartEnergyAlert",
+  "start_url": "/",
+  "theme_color": "#2196f3"
+}
