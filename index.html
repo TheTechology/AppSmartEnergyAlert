@@ -184,7 +184,7 @@
       justify-content: flex-end;
     }
 
-    /* BUTOANE – CULORI VII, EFECT 3D */
+    /* BUTOANE – CULORI VII, EFECT 3D (ALBASTRU + VERDE) */
 
     .btn-pill {
       display: inline-flex;
@@ -199,10 +199,10 @@
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
+      background: linear-gradient(135deg, #22c55e, #0ea5e9);
       color: #020617;
       box-shadow:
-        0 4px 0 rgba(22, 101, 52, 1),
+        0 4px 0 rgba(5, 46, 22, 1),
         0 16px 32px rgba(34, 197, 94, 0.6);
       transition:
         transform 0.12s ease,
@@ -219,40 +219,44 @@
     .btn-pill:hover {
       transform: translateY(-2px);
       box-shadow:
-        0 6px 0 rgba(22, 101, 52, 1),
-        0 20px 40px rgba(34, 197, 94, 0.8);
-      filter: brightness(1.05);
+        0 6px 0 rgba(5, 46, 22, 1),
+        0 20px 40px rgba(14, 165, 233, 0.85);
+      filter: brightness(1.06);
     }
 
     .btn-pill:active {
       transform: translateY(1px);
       box-shadow:
-        0 2px 0 rgba(22, 101, 52, 1),
+        0 2px 0 rgba(5, 46, 22, 1),
         0 6px 14px rgba(15, 23, 42, 0.9);
       filter: brightness(0.97);
     }
 
-    /* versiune portocalie pentru Add Device */
+    /* versiune albastru-verde pentru Add Device */
 
     .btn-device {
-      background: linear-gradient(135deg, #fb923c, #f97316);
+      background: linear-gradient(135deg, #0ea5e9, #22c55e);
       box-shadow:
-        0 4px 0 rgba(154, 52, 18, 1),
-        0 18px 38px rgba(249, 115, 22, 0.7);
-      color: #111827;
+        0 4px 0 rgba(15, 23, 42, 1),
+        0 18px 38px rgba(56, 189, 248, 0.8);
+      color: #f9fafb;
     }
 
     .btn-device:hover {
       box-shadow:
-        0 6px 0 rgba(154, 52, 18, 1),
-        0 22px 44px rgba(249, 115, 22, 0.85);
+        0 6px 0 rgba(15, 23, 42, 1),
+        0 22px 44px rgba(56, 189, 248, 0.95);
     }
 
     .btn-ghost {
       padding: 6px 11px;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.7);
-      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.26), rgba(15, 23, 42, 0.98));
+      background: radial-gradient(
+        circle at top,
+        rgba(56, 189, 248, 0.35),
+        rgba(15, 23, 42, 0.98)
+      );
       color: var(--muted);
       font-size: 0.72rem;
       cursor: pointer;
@@ -266,7 +270,11 @@
     }
 
     .btn-ghost:hover {
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.28), rgba(15, 23, 42, 1));
+      background: radial-gradient(
+        circle at top,
+        rgba(34, 197, 94, 0.4),
+        rgba(15, 23, 42, 1)
+      );
       color: var(--text);
       border-color: rgba(56, 189, 248, 0.9);
       transform: translateY(-2px);
@@ -540,7 +548,7 @@
       appearance: none;
       height: 6px;
       border-radius: 999px;
-      background: linear-gradient(90deg, #22c55e, #eab308, #f97373);
+      background: linear-gradient(90deg, #22c55e, #0ea5e9, #1d4ed8);
       outline: none;
     }
 
@@ -666,7 +674,7 @@
       text-align: center;
     }
 
-    /* BOTTOM NAV – NAVIGAȚIE, FĂRĂ „ADD DEVICE” */
+    /* BOTTOM NAV – NAVIGAȚIE */
 
     .bottom-nav {
       position: absolute;
@@ -702,7 +710,11 @@
       padding: 6px 7px;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.7);
-      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.65), rgba(15, 23, 42, 0.98));
+      background: radial-gradient(
+        circle at top,
+        rgba(56, 189, 248, 0.7),
+        rgba(15, 23, 42, 0.98)
+      );
       color: var(--muted);
       font-size: 0.66rem;
       text-transform: uppercase;
@@ -725,7 +737,11 @@
     }
 
     .bottom-nav-btn:hover {
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.6), rgba(15, 23, 42, 1));
+      background: radial-gradient(
+        circle at top,
+        rgba(34, 197, 94, 0.7),
+        rgba(15, 23, 42, 1)
+      );
       border-color: rgba(56, 189, 248, 0.9);
       color: var(--text);
       transform: translateY(-2px);
@@ -795,7 +811,7 @@
       cursor: pointer;
     }
 
-    /* MODALS – FUNDAL ALB, TEXT NEGRU, ÎNCADRARE PROFESIONALĂ */
+    /* MODALS – FUNDAL ALB, TEXT NEGRU */
 
     .modal-backdrop {
       position: fixed;
@@ -910,7 +926,7 @@
     }
 
     .modal-primary {
-      background: #0ea5e9;
+      background: linear-gradient(135deg, #22c55e, #0ea5e9);
       color: #f9fafb;
       border-color: #0ea5e9;
       font-weight: 600;
@@ -1421,3 +1437,516 @@
     <div class="modal">
       <div class="modal-header">
         <div class="modal-title">
+          <span data-lang="ro">Echipa SmartEnergy Alert</span>
+          <span data-lang="en">SmartEnergy Alert Team</span>
+        </div>
+        <button class="modal-close" type="button" onclick="closeTeamModal()">×</button>
+      </div>
+
+      <p class="modal-intro">
+        <span data-lang="ro">
+          Prototipul <strong>SmartEnergy Alert</strong> a fost realizat de elevi de clasa a X-a și a XI-a ai
+          <strong>Colegiului Național „Emil Botta”, Adjud</strong>, în cadrul hackathon-ului educațional
+          <strong>EduHack Adjud 2025 – Digital Skills for Equal Futures</strong>.
+        </span>
+        <span data-lang="en">
+          The <strong>SmartEnergy Alert</strong> prototype was created by students in grades X and XI of
+          the <strong>National College “Emil Botta”, Adjud</strong>, during the educational hackathon
+          <strong>EduHack Adjud 2025 – Digital Skills for Equal Futures</strong>.
+        </span>
+      </p>
+
+      <p class="modal-intro">
+        <span data-lang="ro">
+          Activitatea s-a desfășurat la <strong>Orange Digital Center, Strada Alexandru Ioan Cuza 64, Adjud 625100</strong>,
+          spațiu coordonat de <strong>Asociația Grupul Verde</strong> și susținut de <strong>Fundația Orange</strong>.
+          Fundația Orange sprijină proiecte care dezvoltă competențele digitale ale copiilor, tinerilor și adulților,
+          cu accent pe incluziune, acces echitabil la tehnologie și inovație în folosul comunității.
+        </span>
+        <span data-lang="en">
+          The activity took place at the <strong>Orange Digital Center, Strada Alexandru Ioan Cuza 64, Adjud 625100</strong>,
+          an educational space coordinated by <strong>Asociația Grupul Verde</strong> and supported by the
+          <strong>Orange Foundation</strong>. The Orange Foundation supports projects that develop digital skills for
+          children, young people and adults, with a strong focus on inclusion, equitable access to technology and
+          innovation for the benefit of the community.
+        </span>
+      </p>
+
+      <p class="team-highlight">
+        <span data-lang="ro">Echipa de tineri creatori:</span>
+        <span data-lang="en">Youth creator team:</span>
+      </p>
+      <ul class="team-list">
+        <li>Apădurăriței Ștefan Bogdan</li>
+        <li>Mihai Daniel</li>
+        <li>Munteanu Ioana-Ștefania</li>
+        <li>Pavel Andreea Larisa</li>
+        <li>Mihai Daniel</li>
+        <li>Istrățoiu Răzvan</li>
+        <li>Pavel Răzvan Teodor</li>
+        <li>Dragomir Andrei Alberto</li>
+        <li>Lazăr Cristian Mihai</li>
+        <li>Cobzaru Miruna-Francisca</li>
+        <li>Chiriac Andrei-Răzvan</li>
+      </ul>
+
+      <p class="team-highlight">
+        <span data-lang="ro">Project Manager: Marian DUMITRU – Asociația Grupul Verde</span>
+        <span data-lang="en">Project Manager: Marian DUMITRU – Asociația Grupul Verde</span>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let currentLang = "ro";
+
+      const range = document.getElementById("demo-range");
+      const hourEl = document.getElementById("demo-hour");
+      const priceEl = document.getElementById("demo-price");
+      const statusTextEl = document.getElementById("demo-status-text");
+      const zoneLabelEl = document.getElementById("demo-zone-label");
+      const msgEl = document.getElementById("demo-message");
+      const statusPill = document.getElementById("demo-status-pill");
+      const dotEl = document.getElementById("status-dot");
+
+      const toastEl = document.getElementById("toast");
+      const toastTitleEl = document.getElementById("toast-title");
+      const toastTextEl = document.getElementById("toast-text");
+      const toastActionsEl = document.getElementById("toast-actions");
+
+      const startSelect = document.getElementById("interval-start");
+      const endSelect = document.getElementById("interval-end");
+      const intervalSummaryEl = document.getElementById("interval-summary");
+      const intervalAdviceEl = document.getElementById("interval-advice");
+
+      const pricingModalEl = document.getElementById("pricing-modal");
+      const addDeviceBtn = document.getElementById("add-device-btn");
+
+      const teamModalEl = document.getElementById("team-modal");
+      const teamBtn = document.getElementById("team-btn");
+
+      const btnRo = document.getElementById("btn-ro");
+      const btnEn = document.getElementById("btn-en");
+
+      const pricingTitle = document.getElementById("pricing-title");
+      const pricingIntro = document.getElementById("pricing-intro");
+      const plan1Name = document.getElementById("plan1-name");
+      const plan2Name = document.getElementById("plan2-name");
+      const plan3Name = document.getElementById("plan3-name");
+      const plan1List = document.getElementById("plan1-list");
+      const plan2List = document.getElementById("plan2-list");
+      const plan3List = document.getElementById("plan3-list");
+      const pricingClose = document.getElementById("pricing-close");
+      const pricingEmail = document.getElementById("pricing-email");
+
+      let toastTimeout = null;
+      let currentDevices = 0;
+      const freeDeviceLimit = 1;
+
+      function formatHour(h) {
+        const hh = String(h).padStart(2, "0");
+        return hh + ":00";
+      }
+
+      function getPriceForHour(h) {
+        if (h >= 0 && h < 6) return 0.4;
+        if (h >= 6 && h < 9) return 0.95;
+        if (h >= 9 && h < 13) return 0.7;
+        if (h >= 13 && h < 17) return 0.45;
+        if (h >= 17 && h < 22) return 1.05;
+        return 0.6;
+      }
+
+      function showToast(type) {
+        if (!toastEl) return;
+
+        if (type === "peak") {
+          if (currentLang === "ro") {
+            toastTitleEl.textContent = "Avertizare preț de vârf";
+            toastTextEl.textContent =
+              "Energia este scumpă în această oră. Dacă poți, mută consumul în alt interval.";
+            toastActionsEl.textContent =
+              "Sfat: folosește planificatorul pentru a muta spălatul, călcatul sau încălzirea în intervalele verzi (mai ieftine).";
+          } else {
+            toastTitleEl.textContent = "Peak price alert";
+            toastTextEl.textContent =
+              "Electricity is expensive in this hour. If possible, move your usage to another interval.";
+            toastActionsEl.textContent =
+              "Tip: use the planner to shift washing, ironing or heating to cheaper (green) intervals.";
+          }
+        } else if (type === "device-added") {
+          if (currentLang === "ro") {
+            toastTitleEl.textContent = "Dispozitiv adăugat în demo";
+            toastTextEl.textContent =
+              "Ai conectat un dispozitiv în modul demo. Pentru mai multe dispozitive este necesar un plan extins.";
+            toastActionsEl.textContent =
+              "Poți testa logica aplicației gratuit pentru un singur dispozitiv.";
+          } else {
+            toastTitleEl.textContent = "Demo device added";
+            toastTextEl.textContent =
+              "You connected one device in demo mode. To add more devices you will need an extended plan.";
+            toastActionsEl.textContent =
+              "You can test the app logic for free with a single device.";
+          }
+        }
+
+        toastEl.classList.add("show");
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(function () {
+          hideToast();
+        }, 6000);
+      }
+
+      function hideToast() {
+        if (!toastEl) return;
+        toastEl.classList.remove("show");
+      }
+
+      window.hideToast = hideToast;
+
+      function updateDemo() {
+        if (!range || !hourEl || !priceEl || !statusTextEl || !zoneLabelEl || !msgEl || !statusPill || !dotEl) {
+          return;
+        }
+
+        var hour = parseInt(range.value, 10);
+        var price = getPriceForHour(hour);
+
+        hourEl.textContent = formatHour(hour);
+        priceEl.textContent = price.toFixed(2) + " lei / kWh";
+
+        var status, zone, message;
+        var borderColor, dotColor, glow;
+
+        if (price <= 0.5) {
+          if (currentLang === "ro") {
+            status = "Energie ieftină";
+            zone = "Zonă verde · moment bun pentru mașina de spălat";
+            message =
+              "Acesta este un moment foarte bun pentru a folosi aparatele cu consum mare, cum ar fi mașina de spălat, mașina de spălat vase sau cuptorul electric.";
+          } else {
+            status = "Cheap energy";
+            zone = "Green zone · good time for washing machine";
+            message =
+              "This is a very good moment to use high-consumption devices such as the washing machine, dishwasher or electric oven.";
+          }
+
+          borderColor = "1px solid rgba(34, 197, 94, 0.8)";
+          dotColor = "#22c55e";
+          glow = "0 0 14px rgba(34, 197, 94, 0.9)";
+        } else if (price <= 0.8) {
+          if (currentLang === "ro") {
+            status = "Preț normal";
+            zone = "Zonă galbenă · folosește cu atenție";
+            message =
+              "Prețul este normal. Poți folosi aparatele dacă ai nevoie, dar vei economisi mai mult dacă alegi un interval verde (mai ieftin).";
+          } else {
+            status = "Normal price";
+            zone = "Yellow zone · use with care";
+            message =
+              "The price is normal. You can use your devices if needed, but you may save more by choosing a green (cheaper) interval.";
+          }
+
+          borderColor = "1px solid rgba(234, 179, 8, 0.8)";
+          dotColor = "#eab308";
+          glow = "0 0 14px rgba(234, 179, 8, 0.9)";
+        } else {
+          if (currentLang === "ro") {
+            status = "Energie scumpă";
+            zone = "Zonă roșie · evită aparatele mari";
+            message =
+              "Acesta este un interval cu preț de vârf. Este mai bine să eviți folosirea mașinii de spălat, a caloriferelor electrice sau a cuptorului, dacă este posibil.";
+          } else {
+            status = "Expensive energy";
+            zone = "Red zone · avoid big devices";
+            message =
+              "This is a peak-price interval. It is better to avoid using washing machines, electric heaters or ovens right now if possible.";
+          }
+
+          borderColor = "1px solid rgba(248, 113, 113, 0.9)";
+          dotColor = "#f97373";
+          glow = "0 0 14px rgba(248, 113, 113, 0.9)";
+
+          showToast("peak");
+        }
+
+        statusTextEl.textContent = status;
+        zoneLabelEl.textContent = zone;
+        msgEl.innerHTML =
+          "<strong>" +
+          (currentLang === "ro" ? "Recomandare pentru locuința ta:" : "Recommendation for your home:") +
+          "</strong> " +
+          message;
+
+        statusPill.style.border = borderColor;
+        dotEl.style.background = dotColor;
+        dotEl.style.boxShadow = glow;
+      }
+
+      function updatePlanner() {
+        if (!startSelect || !endSelect || !intervalSummaryEl || !intervalAdviceEl) return;
+
+        var start = parseInt(startSelect.value, 10);
+        var end = parseInt(endSelect.value, 10);
+        if (isNaN(start) || isNaN(end) || end <= start) {
+          intervalSummaryEl.textContent =
+            currentLang === "ro"
+              ? "Te rugăm să alegi un interval orar valid."
+              : "Please select a valid time interval.";
+          intervalAdviceEl.textContent = "";
+          return;
+        }
+
+        var sum = 0;
+        var count = 0;
+        for (var h = start; h < end; h++) {
+          sum += getPriceForHour(h);
+          count++;
+        }
+
+        var avg = sum / count;
+        var estimatedConsumption = 2;
+        var cost = avg * estimatedConsumption;
+
+        if (currentLang === "ro") {
+          intervalSummaryEl.innerHTML =
+            "Preț mediu: <strong>" +
+            avg.toFixed(2) +
+            " lei/kWh</strong>. Pentru un consum estimat de <strong>" +
+            estimatedConsumption.toFixed(1) +
+            " kWh</strong>, costul aproximativ este <strong>" +
+            cost.toFixed(2) +
+            " lei</strong>.";
+        } else {
+          intervalSummaryEl.innerHTML =
+            "Average price: <strong>" +
+            avg.toFixed(2) +
+            " lei/kWh</strong>. For an estimated consumption of <strong>" +
+            estimatedConsumption.toFixed(1) +
+            " kWh</strong>, the approximate cost is <strong>" +
+            cost.toFixed(2) +
+            " lei</strong>.";
+        }
+
+        if (avg <= 0.5) {
+          intervalAdviceEl.textContent =
+            currentLang === "ro"
+              ? "Acesta pare a fi un interval verde (ieftin). Este o alegere bună pentru aparatele mari."
+              : "This looks like a green (cheap) interval. It is a good choice for heavy appliances.";
+        } else if (avg <= 0.8) {
+          intervalAdviceEl.textContent =
+            currentLang === "ro"
+              ? "Acesta este un interval galben (normal). Este acceptabil, dar îl poți compara cu un interval mai ieftin."
+              : "This is a yellow (normal) interval. It is acceptable, but you may compare it with a cheaper one.";
+        } else {
+          intervalAdviceEl.textContent =
+            currentLang === "ro"
+              ? "Acesta este un interval roșu (scump). Încearcă să muți consumul în ore mai ieftine, dacă se poate."
+              : "This is a red (expensive) interval. Try to move usage to cheaper hours if possible.";
+        }
+      }
+
+      function openPricingModal() {
+        if (!pricingModalEl) return;
+        pricingModalEl.classList.add("show");
+      }
+
+      function closePricingModal() {
+        if (!pricingModalEl) return;
+        pricingModalEl.classList.remove("show");
+      }
+
+      function openTeamModal() {
+        if (!teamModalEl) return;
+        teamModalEl.classList.add("show");
+      }
+
+      function closeTeamModal() {
+        if (!teamModalEl) return;
+        teamModalEl.classList.remove("show");
+      }
+
+      window.closePricingModal = closePricingModal;
+      window.closeTeamModal = closeTeamModal;
+
+      // Bottom nav scroll
+      var navButtons = document.querySelectorAll(".bottom-nav-btn[data-target]");
+      if (navButtons && navButtons.length) {
+        navButtons.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var targetId = btn.getAttribute("data-target");
+            var section = document.getElementById(targetId);
+            if (section) {
+              section.scrollIntoView({ behavior: "smooth" });
+            }
+          });
+        });
+      }
+
+      // Add device logic
+      if (addDeviceBtn) {
+        addDeviceBtn.addEventListener("click", function () {
+          if (currentDevices < freeDeviceLimit) {
+            currentDevices++;
+            showToast("device-added");
+          } else {
+            openPricingModal();
+          }
+        });
+      }
+
+      // Team button
+      if (teamBtn) {
+        teamBtn.addEventListener("click", function () {
+          openTeamModal();
+        });
+      }
+
+      // Close modals on backdrop click
+      if (pricingModalEl) {
+        pricingModalEl.addEventListener("click", function (e) {
+          if (e.target === pricingModalEl) {
+            closePricingModal();
+          }
+        });
+      }
+      if (teamModalEl) {
+        teamModalEl.addEventListener("click", function (e) {
+          if (e.target === teamModalEl) {
+            closeTeamModal();
+          }
+        });
+      }
+
+      // Populate planner selects
+      if (startSelect && endSelect) {
+        for (var i = 0; i < 24; i++) {
+          var optStart = document.createElement("option");
+          optStart.value = i;
+          optStart.textContent = formatHour(i);
+          startSelect.appendChild(optStart);
+
+          var optEnd = document.createElement("option");
+          optEnd.value = i;
+          optEnd.textContent = formatHour(i);
+          endSelect.appendChild(optEnd);
+        }
+        startSelect.value = "8";
+        endSelect.value = "10";
+
+        startSelect.addEventListener("change", updatePlanner);
+        endSelect.addEventListener("change", updatePlanner);
+      }
+
+      function updatePricingTexts() {
+        if (
+          !pricingTitle ||
+          !pricingIntro ||
+          !plan1Name ||
+          !plan2Name ||
+          !plan3Name ||
+          !plan1List ||
+          !plan2List ||
+          !plan3List ||
+          !pricingClose ||
+          !pricingEmail
+        ) {
+          return;
+        }
+
+        if (currentLang === "ro") {
+          pricingTitle.textContent = "Alege planul SmartEnergy";
+          pricingIntro.textContent =
+            "Ai ajuns la limita de dispozitive în modul demo. Pentru a adăuga mai multe dispozitive inteligente, te invităm să alegi unul dintre planurile de mai jos, în funcție de nevoile locuinței sau ale organizației tale:";
+          plan1Name.textContent = "Starter · până la 3 dispozitive";
+          plan1List.innerHTML =
+            "<li>Monitorizare pentru <strong>până la 3 dispozitive</strong> (frigider, mașină de spălat, centrală etc.).</li>" +
+            "<li>Alerte simple de tip <strong>„verde / galben / roșu”</strong> pentru fiecare oră de consum.</li>" +
+            "<li>Recomandări de bază pentru optimizarea facturii lunare de energie.</li>";
+          plan2Name.textContent = "Family · până la 6 dispozitive";
+          plan2List.innerHTML =
+            "<li>Conectezi <strong>până la 6 dispozitive</strong> în aceeași locuință (electrocasnice și surse de încălzire).</li>" +
+            "<li>Notificări personalizate pentru orele de vârf și intervalele cele mai avantajoase.</li>" +
+            "<li>Mini-raport lunar cu estimarea economiilor realizate și recomandări de îmbunătățire.</li>";
+          plan3Name.textContent = "Pro / Business · peste 6 dispozitive";
+          plan3List.innerHTML =
+            "<li>Suport pentru <strong>mai mult de 6 dispozitive</strong> – ideal pentru locuințe mari sau sedii mici de firmă.</li>" +
+            "<li>Configurare personalizată în funcție de profilul de consum și de tipul instalațiilor.</li>" +
+            "<li>Ofertă dedicată, stabilită împreună prin email și adaptată contextului tău.</li>";
+          pricingClose.textContent = "Închide";
+          pricingEmail.textContent = "Trimite email pentru ofertă >";
+        } else {
+          pricingTitle.textContent = "Choose your SmartEnergy plan";
+          pricingIntro.textContent =
+            "You have reached the device limit in demo mode. To add more smart devices, please select one of the plans below, according to the needs of your home or organisation:";
+          plan1Name.textContent = "Starter · up to 3 devices";
+          plan1List.innerHTML =
+            "<li>Monitoring for <strong>up to 3 devices</strong> (fridge, washing machine, boiler, etc.).</li>" +
+            "<li>Simple <strong>“green / yellow / red”</strong> alerts for each consumption hour.</li>" +
+            "<li>Basic recommendations to optimise your monthly energy bill.</li>";
+          plan2Name.textContent = "Family · up to 6 devices";
+          plan2List.innerHTML =
+            "<li>Connect <strong>up to 6 devices</strong> in the same household (appliances and heating sources).</li>" +
+            "<li>Personalised notifications for peak hours and the most advantageous time slots.</li>" +
+            "<li>Mini monthly report with estimated savings and improvement suggestions.</li>";
+          plan3Name.textContent = "Pro / Business · more than 6 devices";
+          plan3List.innerHTML =
+            "<li>Support for <strong>more than 6 devices</strong> – ideal for large homes or small offices.</li>" +
+            "<li>Custom configuration tailored to your consumption profile and types of installations.</li>" +
+            "<li>Dedicated offer, agreed together by email and adapted to your context.</li>";
+          pricingClose.textContent = "Close";
+          pricingEmail.textContent = "Email us for an offer >";
+        }
+      }
+
+      function applyLanguage(lang) {
+        currentLang = lang;
+
+        var langNodes = document.querySelectorAll("[data-lang]");
+        if (langNodes && langNodes.length) {
+          langNodes.forEach(function (el) {
+            if (el.getAttribute("data-lang") === lang) {
+              el.style.display = "";
+            } else {
+              el.style.display = "none";
+            }
+          });
+        }
+
+        if (btnRo && btnEn) {
+          if (lang === "ro") {
+            btnRo.classList.add("lang-btn-active");
+            btnEn.classList.remove("lang-btn-active");
+          } else {
+            btnEn.classList.add("lang-btn-active");
+            btnRo.classList.remove("lang-btn-active");
+          }
+        }
+
+        updateDemo();
+        updatePlanner();
+        updatePricingTexts();
+      }
+
+      if (btnRo) {
+        btnRo.addEventListener("click", function () {
+          applyLanguage("ro");
+        });
+      }
+      if (btnEn) {
+        btnEn.addEventListener("click", function () {
+          applyLanguage("en");
+        });
+      }
+
+      if (range) {
+        range.addEventListener("input", updateDemo);
+      }
+
+      // inițializare
+      applyLanguage("ro");
+    });
+  </script>
+</body>
+</html>
